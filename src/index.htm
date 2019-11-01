@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en-US">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Coding Template</title>
@@ -8,21 +9,28 @@
 
 <body>
   <h2>Using axios to get data from the car Restwebservice</h2>
-    
+
 
   <h1>Add a new car</h1>
-<input id="addModel" placeholder="Model"/> 
-<br>
-<input id= "addVendor" placeholder="Vendor"/>
-<br>
-<input id= "addPrice" placeholder ="Price"/>
-<br>
-<button id="addButton">Add a Car</button>
+  <input id="idin" placeholder="id" />
+  <br>
+  <input id="namein" placeholder="name" />
+  <br>
+  <input id="quantityin" placeholder="quantity" />
+  <br>
+  <input id="qualityin" placeholder="quality" />
+  <br>
+  <button id="addButton">Add a Car</button>
 
-<div id="content"></div>
-  
-<button id="getAllButton">Get All Cars</button>
+  <div id="content">
+    <table id="gettable">
+
+    </table>
+  </div>
+
+  <button id="getAllButton">Get All Cars</button>
 
   <script src="bundle.js"></script>
 </body>
+
 </html>
