@@ -18,22 +18,43 @@ let AddCarButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById
 AddCarButton.addEventListener('click', add);
 let getallbutton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAllButton");
 getallbutton.addEventListener('click', getall);
-let getbyid: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getbyid");
-getbyid.addEventListener('click', getbyidfunc);
+let getbyidbutton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getbyid");
+getbyidbutton.addEventListener('click', getbyidfunc);
+let delbyidbutton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("delbyid");
+delbyidbutton.addEventListener('click', delbyid);
 
 let gettable: HTMLTableElement = <HTMLTableElement>document.getElementById("gettable");
 
 
+function delbyid(): void {
 
+    console.log("At delbyid");
+    let idelement: HTMLInputElement = <HTMLInputElement>document.getElementById("getid");
+    let id: string = idelement.value;
+    //axios call
+
+    axios.delete(WebUrl + id)
+        .then(function (response: AxiosResponse<Item>) {
+            //then the get is ok
+            document.getElementById("deletecontent").innerHTML = "Item with id " + id + " was deleted"
+
+
+        })
+        .catch(function (error: AxiosError) {
+            //then the get fails
+        });
+
+
+}
 
 function getbyidfunc(): void {
 
     console.log("At getbyid");
-    let idelement2: HTMLInputElement = <HTMLInputElement>document.getElementById("getid");
-    let id2: string = idelement2.value;
+    let idelement: HTMLInputElement = <HTMLInputElement>document.getElementById("getid");
+    let id: string = idelement.value;
     //axios call
 
-    axios.get<Item>(WebUrl + id2)
+    axios.get<Item>(WebUrl + id)
         .then(function (response: AxiosResponse<Item>) {
             //then the get is ok
             gettable.innerHTML = "";
