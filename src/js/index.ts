@@ -4,7 +4,7 @@ import axios, {
 } from "../../node_modules/axios/index"
 
 //url for the rest webservice at Azure
-let WebUrl: string = "https://itemservice-habo.azurewebsites.net/api/localitems";
+let WebUrl: string = "https://itemservice-habo.azurewebsites.net/api/localitems/";
 
 interface Item {
     id: number,
@@ -18,7 +18,38 @@ let AddCarButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById
 AddCarButton.addEventListener('click', add);
 let getallbutton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAllButton");
 getallbutton.addEventListener('click', getall);
+let getbyid: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getbyid");
+getbyid.addEventListener('click', getbyidfunc);
+
 let gettable: HTMLTableElement = <HTMLTableElement>document.getElementById("gettable");
+
+
+
+
+function getbyidfunc(): void {
+
+    console.log("At getbyid");
+    let idelement2: HTMLInputElement = <HTMLInputElement>document.getElementById("getid");
+    let id2: string = idelement2.value;
+    //axios call
+
+    axios.get<Item>(WebUrl + id2)
+        .then(function (response: AxiosResponse<Item>) {
+            //then the get is ok
+            gettable.innerHTML = "";
+            let car = response.data
+            gettable.innerHTML = gettable.innerHTML + "<tr> <td>" + car.id + "</td> <td>" + car.name + "</td><td>" + car.quality + "</td><td>" + car.quantity + "</td></tr>"
+
+
+
+        })
+        .catch(function (error: AxiosError) {
+            //then the get fails
+        });
+
+
+}
+
 
 function getall(): void {
 
